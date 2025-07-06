@@ -1,155 +1,134 @@
-# ResidentEvilWiki
+# Resident Evil Wiki 🧟‍♂️
 
-ResidentEvilWiki es una aplicación web desarrollada en Ruby on Rails que utiliza Bulma como framework CSS. El proyecto está orientado a la comunidad fan de Resident Evil, permitiendo la creación de blogs, reseñas, chats y más.
+Welcome to the **ResidentEvilWiki**! This web application, built with Ruby on Rails and styled with Bulma, serves as a vibrant hub for fans of the Resident Evil series. Here, you can create blogs, share reviews, engage in chats, and much more. 
 
----
+[![Releases](https://img.shields.io/github/release/ShreyasShenoyT/ResidentEvilWiki.svg)](https://github.com/ShreyasShenoyT/ResidentEvilWiki/releases)
 
-## Requisitos Previos
+## Table of Contents
 
-- **Ruby** 3.3.6
-- **Rails** 7.1.5.1
-- **Node.js** (recomendado instalar vía nvm o brew)
-- **PostgreSQL**
-- **Yarn** o **npm**
+1. [Features](#features)
+2. [Technologies Used](#technologies-used)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [Contributing](#contributing)
+6. [License](#license)
+7. [Contact](#contact)
 
----
+## Features 🌟
 
-## Configuración Inicial
+- **User Accounts**: Create and manage your account using Devise.
+- **Blog Creation**: Write and publish your own blogs.
+- **Reviews**: Share your thoughts on games, characters, and more.
+- **Chat Functionality**: Connect with other fans in real-time.
+- **Responsive Design**: Enjoy a seamless experience on any device, thanks to Bulma.
 
-### 1. Variables de Entorno
+## Technologies Used 🛠️
 
-Debes crear un archivo `.env` en la raíz del proyecto con las siguientes variables:
+This project utilizes a range of powerful technologies:
 
-```env
-GMAIL_USERNAME=tu_correo@gmail.com
-GMAIL_PASSWORD=contraseña_de_aplicacion_google
-RAWG_API_KEY=tu_api_key_de_rawg
-```
+- **Ruby on Rails**: The backbone of our application.
+- **Bulma**: For a clean and modern CSS framework.
+- **Action Cable**: Enables real-time features like chat.
+- **Cloudinary**: For image management.
+- **Devise**: Handles user authentication.
+- **Dotenv**: Manages environment variables.
+- **Importmap Rails**: Simplifies JavaScript management.
+- **Redis**: For caching and real-time data storage.
+- **Sass**: For advanced styling capabilities.
+- **StimulusJS**: Enhances interactivity.
+- **Turbo**: Provides fast navigation and updates.
 
-- **GMAIL_USERNAME**: Correo de Gmail desde el cual se enviarán los emails.
-- **GMAIL_PASSWORD**: Contraseña de aplicación generada desde la configuración de seguridad de Google (no tu contraseña personal).
-- **RAWG_API_KEY**: Clave de API de [RAWG.io](https://rawg.io/apidocs), necesaria para acceder a la base de datos de videojuegos.
+## Installation 🛠️
 
-Para obtener tu `RAWG_API_KEY`:
+To get started with ResidentEvilWiki, follow these steps:
 
-1. Regístrate o inicia sesión en [RAWG.io](https://rawg.io/).
-2. Ve a la sección [API](https://rawg.io/apidocs).
-3. Solicita tu API key siguiendo las instrucciones de la página.
-4. Copia la clave y pégala en el archivo `.env` como se muestra arriba.
+1. **Clone the repository**:
 
-### 2. Clave de Rails
+   ```bash
+   git clone https://github.com/ShreyasShenoyT/ResidentEvilWiki.git
+   cd ResidentEvilWiki
+   ```
 
-Debes tener el archivo `config/master.key` con la clave secreta de Rails. Si no tienes este archivo, solicita la clave al equipo de desarrollo o genera una nueva con:
+2. **Install dependencies**:
 
-```bash
-EDITOR="code --wait" bin/rails credentials:edit
-```
+   Make sure you have Ruby and Rails installed. Then run:
 
-Esto generará el archivo y la clave necesaria para desencriptar las credenciales.
+   ```bash
+   bundle install
+   ```
 
----
+3. **Set up your database**:
 
-## Instalación y Primer Arranque
+   Create and migrate your database:
 
-Sigue este orden de comandos para instalar y preparar el entorno desde cero:
+   ```bash
+   rails db:create
+   rails db:migrate
+   ```
 
-```bash
-rm -rf storage/*
-bundle install
-npm install    
-bin/rails db:drop db:create db:migrate db:seed
-npm run build:css
-bundle exec rails assets:precompile
-bundle exec rails assets:clean
-rails dev:cache
-```
+4. **Configure environment variables**:
 
-- Elimina archivos temporales y de almacenamiento.
-- Instala gemas y dependencias de Node.
-- Prepara la base de datos y carga los datos de ejemplo.
-- Compila los estilos de Bulma.
-- Precompila y limpia los assets de Rails.
-- Activa el cache de desarrollo para evitar consumir la API en cada consulta.
+   Create a `.env` file in the root directory and add your environment variables. Refer to the `.env.example` for guidance.
 
----
+5. **Start the server**:
 
-## Arranque del servidor
+   Run the following command to start your application:
 
-En dos terminales distintas:
+   ```bash
+   rails server
+   ```
 
-```bash
-rails s
-```
+6. **Visit the application**:
 
-```bash
-npm run watch:css
-```
+   Open your web browser and go to `http://localhost:3000`.
 
-- El primer comando inicia el servidor Rails.
-- El segundo mantiene la compilación de CSS en tiempo real.
+For more detailed information, you can check the [Releases section](https://github.com/ShreyasShenoyT/ResidentEvilWiki/releases).
 
----
+## Usage 🚀
 
-## Flujo de trabajo para cambios en estilos
+Once you have the application running, you can:
 
-Cada vez que realices un cambio importante en un archivo `.scss`:
+- **Sign Up**: Create a new account to access all features.
+- **Create a Blog**: Navigate to the blog section and start writing.
+- **Leave Reviews**: Share your opinions on different Resident Evil titles.
+- **Join the Chat**: Engage with other fans in real-time discussions.
 
-1. Detén ambos procesos (`rails s` y `npm run watch:css`).
-2. Ejecuta:
+## Contributing 🤝
 
-    ```bash
-    npm run build:css
-    bundle exec rails assets:precompile
-    bundle exec rails assets:clean
-    ```
+We welcome contributions! If you would like to contribute to ResidentEvilWiki, please follow these steps:
 
-3. Vuelve a iniciar ambos procesos:
+1. **Fork the repository**.
+2. **Create a new branch**:
 
-    ```bash
-    rails s
-    npm run watch:css
-    ```
+   ```bash
+   git checkout -b feature/YourFeatureName
+   ```
 
----
+3. **Make your changes**.
+4. **Commit your changes**:
 
-## Dependencias principales
+   ```bash
+   git commit -m "Add your message here"
+   ```
 
-- **Ruby on Rails**: Framework backend principal.
-- **Bulma**: Framework CSS.
-- **Sass**: Preprocesador CSS.
-- **Devise**: Autenticación de usuarios.
-- **Cloudinary**: Almacenamiento de imágenes.
-- **dotenv-rails**: Manejo de variables de entorno.
-- **Redis**: Soporte para Action Cable (WebSockets).
-- **Importmap, Turbo, Stimulus**: SPA-like y JS moderno sin Webpack.
+5. **Push to the branch**:
 
-Consulta el `Gemfile` y `package.json` para más detalles.
+   ```bash
+   git push origin feature/YourFeatureName
+   ```
 
----
+6. **Create a pull request**.
 
-## Documentación adicional
+## License 📄
 
-- `docs/diagrama-entidad-relacion.pdf`: Diagrama entidad-relación de la base de datos. Útil para entender la estructura y relaciones entre modelos.
-- `docs/Paleta.pdf`: Paleta de colores oficial del proyecto para mantener la coherencia visual.
-- Otros archivos en `docs/` pueden contener información relevante sobre la arquitectura, decisiones de diseño y manuales de usuario.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
----
+## Contact 📫
 
-## Notas adicionales
+For any inquiries, please reach out to the project maintainer:
 
-- El sistema de autenticación requiere que el correo y la contraseña de aplicación sean válidos para el envío de emails (recuperación de contraseña, confirmaciones, etc).
-- El archivo `master.key` es esencial para desencriptar las credenciales y variables sensibles de Rails.
-- El almacenamiento de imágenes se realiza en Cloudinary, asegúrate de tener configuradas las credenciales necesarias en las variables de entorno o en las credenciales de Rails.
+- **Name**: Shreyas Shenoy
+- **Email**: shreyasshenoy@example.com
+- **GitHub**: [ShreyasShenoyT](https://github.com/ShreyasShenoyT)
 
----
-
-## Recursos útiles
-
-- [Guía oficial de Rails](https://guides.rubyonrails.org/)
-- [Documentación de Bulma](https://bulma.io/documentation/)
-- [Documentación de Devise](https://github.com/heartcombo/devise)
-- [Cloudinary para Rails](https://cloudinary.com/documentation/rails_integration)
-
----
-
-Para cualquier duda adicional, revisa los archivos en la carpeta `docs/` o contacta al equipo de desarrollo.
+Thank you for checking out ResidentEvilWiki! We hope you enjoy building and sharing with our community. For updates, feel free to check the [Releases section](https://github.com/ShreyasShenoyT/ResidentEvilWiki/releases). Happy gaming! 🎮
